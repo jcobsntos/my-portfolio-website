@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, ArrowUp } from 'lucide-react';
+import { Sparkles, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -30,8 +30,8 @@ const Footer = () => {
               Jacob Santos
             </h3>
             <p className="text-gray-300 leading-relaxed max-w-sm mx-auto md:mx-0">
-              Full-stack developer passionate about creating innovative digital experiences 
-              and building the future of web technology.
+              Passionate about creating innovative digital experiences 
+              and building the future of technology.
             </p>
           </div>
 
@@ -55,7 +55,7 @@ const Footer = () => {
           <div className="text-center md:text-right">
             <h4 className="text-lg font-semibold text-white mb-4">Let's Connect</h4>
             <div className="space-y-2">
-              <p className="text-gray-400 text-sm">jacob@jacob.dev</p>
+              <p className="text-gray-400 text-sm">jcobsntos@gmail.com</p>
               <p className="text-gray-400 text-sm">Available worldwide</p>
               <button
                 onClick={() => scrollToSection('#contact')}
@@ -70,8 +70,8 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="mt-12 pt-8 border-t border-gray-700/50 flex flex-col sm:flex-row items-center justify-between">
           <div className="flex items-center text-gray-400 text-sm mb-4 sm:mb-0">
-            <span>© 2024 Jacob Santos. Made with</span>
-            <Heart className="w-4 h-4 text-red-400 mx-1" />
+            <span>© 2025 Jacob Santos. Made with</span>
+            <Sparkles className="w-4 h-4 text-yellow-400 mx-1" />
             <span>and lots of coffee</span>
           </div>
           

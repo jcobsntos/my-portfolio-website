@@ -1,46 +1,73 @@
 import React from 'react';
-import { Code2, Database, Globe, Smartphone, Server, Palette } from 'lucide-react';
+import { Code2, Database, Globe, Smartphone, Server, Palette, BookOpen, Bot, Cpu, Wrench} from 'lucide-react';
 import SectionCodeAnimation from './SectionCodeAnimation';
 
 const Skills = () => {
   const skillCategories = [
-    {
-      title: "Frontend Development",
-      icon: Globe,
-      skills: ["React", "Vue.js", "Angular", "TypeScript", "Tailwind CSS", "Next.js"],
-      gradient: "from-blue-500 to-cyan-500"
-    },
-    {
-      title: "Backend Development",
-      icon: Server,
-      skills: ["Node.js", "Python", "Express", "FastAPI", "GraphQL", "REST APIs"],
-      gradient: "from-cyan-500 to-teal-500"
-    },
-    {
-      title: "Database & Storage",
-      icon: Database,
-      skills: ["PostgreSQL", "MongoDB", "Redis", "Firebase", "AWS S3", "Supabase"],
-      gradient: "from-teal-500 to-blue-600"
-    },
-    {
-      title: "Mobile Development",
-      icon: Smartphone,
-      skills: ["React Native", "Flutter", "PWA", "Ionic", "Expo", "App Store"],
-      gradient: "from-blue-600 to-purple-500"
-    },
-    {
-      title: "DevOps & Tools",
-      icon: Code2,
-      skills: ["Docker", "AWS", "Git", "CI/CD", "Linux", "Kubernetes"],
-      gradient: "from-purple-500 to-pink-500"
-    },
-    {
-      title: "Design & UX",
-      icon: Palette,
-      skills: ["Figma", "Adobe XD", "Photoshop", "UI Design", "UX Research", "Prototyping"],
-      gradient: "from-pink-500 to-cyan-400"
-    }
-  ];
+  {
+    title: "Frontend Development",
+    icon: Globe,
+    skills: ["React", "JavaScript", "HTML", "CSS", "Tailwind CSS"],
+    gradient: "from-blue-500 to-cyan-500"
+  },
+  {
+    title: "Backend Development",
+    icon: Server,
+    skills: ["Node.js", "Express", "RESTful APIs", "Java"],
+    gradient: "from-cyan-500 to-teal-500"
+  },
+  {
+    title: "Database & Storage",
+    icon: Database,
+    skills: ["MongoDB", "MySQL", "Microsoft Access"],
+    gradient: "from-teal-500 to-blue-600"
+  },
+  {
+    title: "Mobile Development",
+    icon: Smartphone,
+    skills: ["React Native", "Flutter", "PWA"],
+    gradient: "from-blue-600 to-purple-500"
+  },
+  {
+    title: "AI / Machine Learning",
+    icon: Bot,
+    skills: ["Python", "TensorFlow", "PyTorch", "OpenCV", "Stable Diffusion", "R"],
+    gradient: "from-green-500 to-emerald-500"
+  },
+  {
+    title: "Microcontrollers & Electronics",
+    icon: Cpu,
+    skills: ["Arduino", "ESP32", "VHDL", "PCB Design (Eagle CAD)", "Circuit Simulation (Tinkercad, Multisim, Proteus)"],
+    gradient: "from-orange-500 to-yellow-500"
+  },
+  {
+    title: "DevOps",
+    icon: Code2,
+    skills: ["Docker", "Kubernetes", "AWS", "CI/CD", "Git", "Linux (Ubuntu, Kali)"],
+    gradient: "from-purple-500 to-pink-500"
+  },
+  {
+    title: "Development Tools",
+    icon: Wrench,
+    skills: ["VS Code", "MATLAB", "Cisco Packet Tracer", "Jupyter Notebook", "MS Office Suite"],
+    gradient: "from-sky-500 to-indigo-500"
+  },
+  {
+    title: "Design & UX",
+    icon: Palette,
+    skills: ["Figma", "Penpot", "Sketch", "Framer", "Visily", "Uizard"],
+    gradient: "from-pink-500 to-cyan-400"
+  },
+  {
+    title: "Knowledge Areas",
+    icon: BookOpen,
+    skills: ["Artificial Intelligence", "Machine Learning", "Cybersecurity", "Networking", "Software Design", "Database Design", "Cryptography", "Electronic Circuits", "Logic Circuits"],
+    gradient: "from-indigo-500 to-blue-700"
+  }
+]
+
+    
+  
 
   return (
     <section id="skills" className="relative py-16 sm:py-20 lg:py-24">
@@ -106,10 +133,9 @@ const Skills = () => {
           <h3 className="text-2xl font-bold text-gray-300 mb-8">Additional Technologies</h3>
           <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
             {[
-              "JavaScript", "Python", "TypeScript", "Go", "Rust", "Java", "C++",
-              "HTML5", "CSS3", "SASS", "WebGL", "Three.js", "D3.js", "Chart.js",
-              "Jest", "Cypress", "Playwright", "Webpack", "Vite", "Rollup",
-              "Stripe", "PayPal", "OAuth", "JWT", "WebRTC", "Socket.io", "Websockets"
+              "JavaScript", "Python", "TypeScript", "Java", "C++",
+              "HTML5", "CSS3", "Chart.js", "Vite", "Rollup",
+              "Mongoose", "Axios", "Recharts", "JWT", "WebRTC", "Socket.io", "Websockets"
             ].map((tech, index) => (
               <span
                 key={index}

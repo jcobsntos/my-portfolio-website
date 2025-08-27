@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Github, Linkedin, Send, MessageCircle } from 'lucide-react';
 import SectionCodeAnimation from './SectionCodeAnimation';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -21,36 +23,58 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+
+    // ✅ Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      await emailjs.send(
+        'service_twbh5bb',   // Replace with your EmailJS Service ID
+        'template_hg9kn0a',  // Replace with your EmailJS Template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        'xNmY2tRmOdWgV1DEe'    // Replace with your EmailJS Public Key
+      );
+
       setSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-      
-      // Reset success message after 3 seconds
       setTimeout(() => setSubmitted(false), 3000);
-    }, 1000);
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
     {
       name: 'GitHub',
       icon: Github,
-      href: 'https://github.com/jacobsantos',
+      href: 'https://github.com/jcobsntos',
       gradient: 'from-gray-600 to-gray-800'
     },
     {
       name: 'LinkedIn',
       icon: Linkedin,
-      href: 'https://linkedin.com/in/jacobsantos',
+      href: 'https://www.linkedin.com/in/jcobsntos/',
       gradient: 'from-blue-600 to-blue-800'
     },
     {
       name: 'Email',
       icon: Mail,
-      href: 'mailto:jacob@jacob.dev',
+      href: 'mailto:jcobsntos@gmail.com',
       gradient: 'from-cyan-600 to-teal-600'
     }
   ];
@@ -59,7 +83,7 @@ const Contact = () => {
     <section id="contact" className="relative py-16 sm:py-20 lg:py-24 bg-gray-800/20">
       {/* Code Animation */}
       <SectionCodeAnimation section="contact" position="right" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -77,6 +101,8 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="relative">
             <form onSubmit={handleSubmit} className="space-y-6">
+              {error && <p className="text-red-400 text-sm mb-2">{error}</p>}
+
               {/* Name */}
               <div className="relative">
                 <input
@@ -168,7 +194,7 @@ const Contact = () => {
             </form>
           </div>
 
-          {/* Contact Info */}
+          {/* ✅ Get in Touch + Social Links (UNCHANGED) */}
           <div className="space-y-8">
             {/* Get in Touch */}
             <div className="bg-gray-800/30 backdrop-blur-lg rounded-2xl p-8 border border-gray-700/50">
@@ -183,13 +209,13 @@ const Contact = () => {
               <div className="space-y-3">
                 <div className="flex items-center text-gray-300">
                   <Mail className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0" />
-                  <span>jacob@jacob.dev</span>
+                  <span>jcobsntos@gmail.com</span>
                 </div>
                 <div className="flex items-center text-gray-300">
                   <div className="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0 flex items-center justify-center">
                     🌍
                   </div>
-                  <span>Available for remote work worldwide</span>
+                  <span>Available for work</span>
                 </div>
               </div>
             </div>
