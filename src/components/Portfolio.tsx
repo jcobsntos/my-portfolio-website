@@ -23,7 +23,7 @@ const Portfolio = () => {
       description: "A full-stack MERN (MongoDB, Express, React, Node.js) based Expense Tracker that helps users manage income, expenses, and budgets with an intuitive dashboard.",
       image: "https://images.pexels.com/photos/34577/pexels-photo.jpg",
       github: "https://github.com/jcobsntos/expense-tracker-web-app",
-      demo: "https://expense-tracker-web-app-navy.vercel.app",
+      demo: "https://expense-tracker-vio.vercel.app",
       tags: ["React", "Node.js", "MongoDB", "JavaScript", "HTML", "CSS", "Tailwind CSS", "Express", "Mongoose"],
       category: 'Full Stack'
     },
