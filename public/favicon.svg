@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#0ea5b7" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#0ea5b7" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0b1220" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="32" y="32" width="448" height="448" rx="88" fill="#0b1220"/>
+  <rect x="32" y="32" width="448" height="448" rx="88" fill="url(#g)"/>
+  <rect x="32" y="32" width="448" height="448" rx="88" stroke="#0ea5b7" stroke-opacity="0.25" stroke-width="3" fill="none"/>
+
+  <!-- Monogram JS -->
+  <g filter="url(#glow)">
+    <text x="50%" y="58%" text-anchor="middle" font-family="Consolas, Menlo, Monaco, monospace" font-size="260" font-weight="700" fill="#22d3ee" letter-spacing="4">
+      JS
+    </text>
+  </g>
+
+  <!-- Subtle code brackets -->
+  <g opacity="0.25" stroke="#22d3ee" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M130 205 L90 256 L130 307"/>
+    <path d="M382 205 L422 256 L382 307"/>
+  </g>
+</svg>
