@@ -44,8 +44,8 @@ const Portfolio = () => {
       image: "https://media.istockphoto.com/id/1266361566/photo/macro-detail-of-wireless-wifi-programmable-microcontroller-module-electronic-small-computer.jpg?b=1&s=612x612&w=0&k=20&c=IfbrV8iDRGZa8ycEM_LwlaitxCG8NQ4CKnbwRSMuG1g=",
       github: "https://github.com/jcobsntos/arduino-iot-cloud-sanitizer",
       demo: "https://drive.google.com/file/d/1HUfIjYYRyNzzaHKBdwOETTL9Pfh8wwKH/view?usp=sharing",
-      tags: ["React", "Node.js", "MongoDB", "JavaScript", "HTML", "CSS", "Tailwind CSS", "Express", "Mongoose"],
-      category: 'Microcontrollers'
+      tags: ["ESP32", "Arduino IDE","Arduino Cloud", "IoT", "Microcontroller", "Ultrasonic Sensor", "TFT LCD", "Water Pump", "IR Sensor", "Active Buzzer", "RGB LED", "C++"],
+      category: "Microcontrollers"
     },
     
   ];
