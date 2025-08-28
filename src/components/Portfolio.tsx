@@ -92,91 +92,91 @@ const Portfolio = () => {
                   <p className="text-gray-400 mt-2">{description}</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
                   {items.map((project) => (
-                    <div
-                      key={project.id}
-                      className="group relative"
-                      onMouseEnter={() => setHoveredCard(project.id)}
-                      onMouseLeave={() => setHoveredCard(null)}
+            <div
+              key={project.id}
+              className="group relative"
+              onMouseEnter={() => setHoveredCard(project.id)}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              <div 
+                className={`relative bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-700/50 transition-all duration-500 transform-gpu ${
+                  hoveredCard === project.id 
+                    ? 'scale-105 rotate-1 shadow-2xl shadow-cyan-500/20 border-cyan-400/30' 
+                    : 'hover:border-gray-600/50'
+                }`}
+                style={{
+                  transform: hoveredCard === project.id 
+                    ? 'perspective(1000px) rotateX(10deg) rotateY(-5deg) scale(1.05)' 
+                    : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)'
+                }}
+              >
+                {/* Project Image */}
+                <div className="relative h-48 sm:h-56 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+                  
+                  {/* Overlay with links */}
+                  <div 
+                    className={`absolute inset-0 bg-gray-900/80 backdrop-blur-sm flex items-center justify-center gap-4 transition-all duration-300 ${
+                      hoveredCard === project.id ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  >
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-gray-800/80 rounded-full text-cyan-400 hover:text-white hover:bg-cyan-500/20 transition-all duration-200 hover:scale-110"
                     >
-                      <div 
-                        className={`relative bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-700/50 transition-all duration-500 transform-gpu ${
-                          hoveredCard === project.id 
-                            ? 'scale-105 rotate-1 shadow-2xl shadow-cyan-500/20 border-cyan-400/30' 
-                            : 'hover:border-gray-600/50'
-                        }`}
-                        style={{
-                          transform: hoveredCard === project.id 
-                            ? 'perspective(1000px) rotateX(10deg) rotateY(-5deg) scale(1.05)' 
-                            : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)'
-                        }}
+                      <Github size={20} />
+                    </a>
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-gray-800/80 rounded-full text-cyan-400 hover:text-white hover:bg-cyan-500/20 transition-all duration-200 hover:scale-110"
+                    >
+                      <ExternalLink size={20} />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-200">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+                  
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="px-3 py-1 bg-gradient-to-r from-blue-600/20 to-teal-500/20 border border-cyan-400/30 rounded-full text-cyan-400 text-xs font-medium backdrop-blur-sm"
                       >
-                        {/* Project Image */}
-                        <div className="relative h-48 sm:h-56 overflow-hidden">
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
-                          
-                          {/* Overlay with links */}
-                          <div 
-                            className={`absolute inset-0 bg-gray-900/80 backdrop-blur-sm flex items-center justify-center gap-4 transition-all duration-300 ${
-                              hoveredCard === project.id ? 'opacity-100' : 'opacity-0'
-                            }`}
-                          >
-                            <a
-                              href={project.github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-3 bg-gray-800/80 rounded-full text-cyan-400 hover:text-white hover:bg-cyan-500/20 transition-all duration-200 hover:scale-110"
-                            >
-                              <Github size={20} />
-                            </a>
-                            <a
-                              href={project.demo}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-3 bg-gray-800/80 rounded-full text-cyan-400 hover:text-white hover:bg-cyan-500/20 transition-all duration-200 hover:scale-110"
-                            >
-                              <ExternalLink size={20} />
-                            </a>
-                          </div>
-                        </div>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
-                        {/* Content */}
-                        <div className="p-6">
-                          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-200">
-                            {project.title}
-                          </h3>
-                          <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                            {project.description}
-                          </p>
-                          
-                          {/* Tags */}
-                          <div className="flex flex-wrap gap-2">
-                            {project.tags.map((tag, tagIndex) => (
-                              <span
-                                key={tagIndex}
-                                className="px-3 py-1 bg-gradient-to-r from-blue-600/20 to-teal-500/20 border border-cyan-400/30 rounded-full text-cyan-400 text-xs font-medium backdrop-blur-sm"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Glow effect */}
-                        <div 
-                          className={`absolute -inset-1 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-2xl blur opacity-0 transition-opacity duration-300 -z-10 ${
-                            hoveredCard === project.id ? 'opacity-20' : ''
-                          }`}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
+                {/* Glow effect */}
+                <div 
+                  className={`absolute -inset-1 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-2xl blur opacity-0 transition-opacity duration-300 -z-10 ${
+                    hoveredCard === project.id ? 'opacity-20' : ''
+                  }`}
+                ></div>
+              </div>
+            </div>
+          ))}
                 </div>
               </div>
             );
