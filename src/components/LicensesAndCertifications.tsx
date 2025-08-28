@@ -18,11 +18,11 @@ const LicensesAndCertifications: React.FC<LicensesAndCertificationsProps> = ({
   certifications = [
     {
       id: 1,
-      title: "Certified Web Developer",
-      issuer: "FreeCodeCamp",
-      date: "January 2025",
-      image: "https://example.com/certified-web-developer.jpg",
-      link: "https://www.freecodecamp.org/certification/jcobsntos/web-developer",
+      title: "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate",
+      issuer: "Oracle",
+      date: "March 2025",
+      image: "https://brm-workforce.oracle.com/pdf/certview/images/OCI25AICFAV1.png",
+      link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=4BBE769AD7ECE27F98F07BD5095CFD3522FE09FB3596CE8D81E82903B37ACE53",
     },
     {
       id: 2,
