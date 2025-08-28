@@ -26,6 +26,22 @@ const LicensesAndCertifications = () => {
       image: "https://example.com/google-data-analytics.jpg",
       link: "https://www.coursera.org/professional-certificates/google-data-analytics",
     },
+    {
+      id: 4,
+      title: "Microsoft Azure Fundamentals",
+      issuer: "Microsoft",
+      date: "April 2023",
+      image: "https://example.com/microsoft-azure-fundamentals.jpg",
+      link: "https://learn.microsoft.com/en-us/certifications/azure-fundamentals/",
+    },
+    {
+      id: 5,
+      title: "Certified Kubernetes Administrator",
+      issuer: "CNCF",
+      date: "May 2023",
+      image: "https://example.com/certified-kubernetes-administrator.jpg",
+      link: "https://www.cncf.io/certification/cka/",
+    },
   ];
 
   return (
@@ -42,33 +58,35 @@ const LicensesAndCertifications = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
-          {certifications.map((certification) => (
-            <a
-              key={certification.id}
-              href={certification.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-700/50 p-6 transition-all duration-500 transform-gpu hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 hover:border-cyan-400/30"
-            >
-              <div className="relative h-40 mb-4">
-                <img
-                  src={certification.image}
-                  alt={certification.title}
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                {certification.title}
-              </h3>
-              <p className="text-gray-300 text-sm mb-1">
-                <strong>Issuer:</strong> {certification.issuer}
-              </p>
-              <p className="text-gray-300 text-sm">
-                <strong>Date:</strong> {certification.date}
-              </p>
-            </a>
-          ))}
+        <div className="overflow-x-auto">
+          <div className="flex space-x-6">
+            {certifications.map((certification) => (
+              <a
+                key={certification.id}
+                href={certification.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 w-80 bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-700/50 p-6 transition-all duration-500 transform-gpu hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 hover:border-cyan-400/30"
+              >
+                <div className="relative h-40 mb-4">
+                  <img
+                    src={certification.image}
+                    alt={certification.title}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {certification.title}
+                </h3>
+                <p className="text-gray-300 text-sm mb-1">
+                  <strong>Issuer:</strong> {certification.issuer}
+                </p>
+                <p className="text-gray-300 text-sm">
+                  <strong>Date:</strong> {certification.date}
+                </p>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
