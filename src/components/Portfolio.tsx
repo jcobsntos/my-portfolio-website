@@ -47,6 +47,16 @@ const Portfolio = () => {
       tags: ["ESP32", "Arduino IDE","Arduino Cloud", "IoT", "Microcontroller", "Ultrasonic Sensor", "TFT LCD", "Water Pump", "IR Sensor", "Active Buzzer", "RGB LED", "C++"],
       category: "Microcontrollers"
     },
+    {
+      id: 4,
+      title: "Melody Player",
+      description: "A modern desktop music player with YouTube Music-inspired design built with Electron and React. Features local music file playback, metadata extraction, search functionality, and a beautiful dark theme interface.",
+      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      github: "https://github.com/jcobsntos/melody-player",
+      demo: "https://github.com/jcobsntos/melody-player/releases",
+      tags: ["Electron", "React", "Node.js", "JavaScript", "CSS3", "GitHub Actions", "Desktop App", "Audio Processing"],
+      category: 'Frontend'
+    },
     
   ];
 
