@@ -101,6 +101,14 @@ const LicensesAndCertifications: React.FC<LicensesAndCertificationsProps> = ({
     setIsDragging(false);
   };
 
+  const handleClick = (e: React.MouseEvent, link: string) => {
+    if (isDragging) {
+      e.preventDefault(); // Prevent click if dragging
+    } else {
+      window.open(link, '_blank'); // Open link in a new tab
+    }
+  };
+
   return (
     <section id="licenses-certifications" className="relative py-16 sm:py-20 lg:py-24 bg-gray-800/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,12 +134,13 @@ const LicensesAndCertifications: React.FC<LicensesAndCertificationsProps> = ({
           style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
         >
           {certifications.concat(certifications).map((certification, index) => (
-            <a
+            <div
               key={index}
-              href={certification.link}
-              target="_blank"
-              rel="noopener noreferrer"
               className="flex-shrink-0 w-80 bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-700/50 p-6 transition-all duration-500 transform-gpu hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 hover:border-cyan-400/30"
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUpOrLeave}
+              onClick={(e) => handleClick(e, certification.link)}
             >
               <div className="relative h-40 mb-4">
                 <img
@@ -149,7 +158,7 @@ const LicensesAndCertifications: React.FC<LicensesAndCertificationsProps> = ({
               <p className="text-gray-300 text-sm">
                 <strong>Date:</strong> {certification.date}
               </p>
-            </a>
+            </div>
           ))}
         </div>
       </div>
