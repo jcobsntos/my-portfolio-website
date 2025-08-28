@@ -53,21 +53,30 @@ const LicensesAndCertifications = () => {
     isDragging = true;
     startX = e.pageX - (scrollContainerRef.current?.offsetLeft || 0);
     scrollLeft = scrollContainerRef.current?.scrollLeft || 0;
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.style.scrollBehavior = "auto"; // Disable smooth scrolling during drag
+    }
   };
 
   const handleMouseLeave = () => {
     isDragging = false;
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.style.scrollBehavior = "smooth"; // Re-enable smooth scrolling
+    }
   };
 
   const handleMouseUp = () => {
     isDragging = false;
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.style.scrollBehavior = "smooth"; // Re-enable smooth scrolling
+    }
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - (scrollContainerRef.current?.offsetLeft || 0);
-    const walk = (x - startX) * 2; // Adjust scroll speed
+    const walk = (x - startX) * 1.5; // Adjust scroll speed for smoothness
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollLeft = scrollLeft - walk;
     }
