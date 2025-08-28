@@ -1,7 +1,21 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
-const LicensesAndCertifications = () => {
-  const certifications = [
+type Certification = {
+  id: number;
+  title: string;
+  issuer: string;
+  date: string;
+  image: string;
+  link: string;
+};
+
+type LicensesAndCertificationsProps = {
+  certifications?: Certification[];
+  speed?: number; // Speed of the movement (default: 1)
+};
+
+const LicensesAndCertifications: React.FC<LicensesAndCertificationsProps> = ({
+  certifications = [
     {
       id: 1,
       title: "Certified Web Developer",
@@ -42,44 +56,49 @@ const LicensesAndCertifications = () => {
       image: "https://example.com/certified-kubernetes-administrator.jpg",
       link: "https://www.cncf.io/certification/cka/",
     },
-  ];
+  ],
+  speed = 1,
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  let isDragging = false;
-  let startX: number;
-  let scrollLeft: number;
+  useEffect(() => {
+    let animationFrame: number;
+
+    const moveItems = () => {
+      if (!isPaused && !isDragging && containerRef.current) {
+        containerRef.current.scrollLeft += speed;
+        if (containerRef.current.scrollLeft >= containerRef.current.scrollWidth / 2) {
+          containerRef.current.scrollLeft = 0;
+        }
+      }
+      animationFrame = requestAnimationFrame(moveItems);
+    };
+
+    animationFrame = requestAnimationFrame(moveItems);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [isPaused, isDragging, speed]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    isDragging = true;
-    startX = e.pageX - (scrollContainerRef.current?.offsetLeft || 0);
-    scrollLeft = scrollContainerRef.current?.scrollLeft || 0;
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.style.scrollBehavior = "auto"; // Disable smooth scrolling during drag
-    }
-  };
-
-  const handleMouseLeave = () => {
-    isDragging = false;
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.style.scrollBehavior = "smooth"; // Re-enable smooth scrolling
-    }
-  };
-
-  const handleMouseUp = () => {
-    isDragging = false;
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.style.scrollBehavior = "smooth"; // Re-enable smooth scrolling
-    }
+    if (!containerRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - containerRef.current.offsetLeft);
+    setScrollLeft(containerRef.current.scrollLeft);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
+    if (!isDragging || !containerRef.current) return;
     e.preventDefault();
-    const x = e.pageX - (scrollContainerRef.current?.offsetLeft || 0);
-    const walk = (x - startX) * 1.5; // Adjust scroll speed for smoothness
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollLeft = scrollLeft - walk;
-    }
+    const x = e.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Adjust drag sensitivity
+    containerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    setIsDragging(false);
   };
 
   return (
@@ -98,15 +117,17 @@ const LicensesAndCertifications = () => {
 
         <div
           className="flex space-x-6 overflow-hidden cursor-grab"
-          ref={scrollContainerRef}
+          ref={containerRef}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
           onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUpOrLeave}
+          style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
         >
-          {certifications.map((certification) => (
+          {certifications.concat(certifications).map((certification, index) => (
             <a
-              key={certification.id}
+              key={index}
               href={certification.link}
               target="_blank"
               rel="noopener noreferrer"
