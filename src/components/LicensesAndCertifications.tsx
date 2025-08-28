@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 const LicensesAndCertifications = () => {
   const certifications = [
@@ -44,6 +44,35 @@ const LicensesAndCertifications = () => {
     },
   ];
 
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  let isDragging = false;
+  let startX: number;
+  let scrollLeft: number;
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDragging = true;
+    startX = e.pageX - (scrollContainerRef.current?.offsetLeft || 0);
+    scrollLeft = scrollContainerRef.current?.scrollLeft || 0;
+  };
+
+  const handleMouseLeave = () => {
+    isDragging = false;
+  };
+
+  const handleMouseUp = () => {
+    isDragging = false;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - (scrollContainerRef.current?.offsetLeft || 0);
+    const walk = (x - startX) * 2; // Adjust scroll speed
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+    }
+  };
+
   return (
     <section id="licenses-certifications" className="relative py-16 sm:py-20 lg:py-24 bg-gray-800/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,35 +87,40 @@ const LicensesAndCertifications = () => {
           </p>
         </div>
 
-        <div className="overflow-x-auto">
-          <div className="flex space-x-6">
-            {certifications.map((certification) => (
-              <a
-                key={certification.id}
-                href={certification.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-shrink-0 w-80 bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-700/50 p-6 transition-all duration-500 transform-gpu hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 hover:border-cyan-400/30"
-              >
-                <div className="relative h-40 mb-4">
-                  <img
-                    src={certification.image}
-                    alt={certification.title}
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">
-                  {certification.title}
-                </h3>
-                <p className="text-gray-300 text-sm mb-1">
-                  <strong>Issuer:</strong> {certification.issuer}
-                </p>
-                <p className="text-gray-300 text-sm">
-                  <strong>Date:</strong> {certification.date}
-                </p>
-              </a>
-            ))}
-          </div>
+        <div
+          className="flex space-x-6 overflow-hidden cursor-grab"
+          ref={scrollContainerRef}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+        >
+          {certifications.map((certification) => (
+            <a
+              key={certification.id}
+              href={certification.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 w-80 bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden border border-gray-700/50 p-6 transition-all duration-500 transform-gpu hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 hover:border-cyan-400/30"
+            >
+              <div className="relative h-40 mb-4">
+                <img
+                  src={certification.image}
+                  alt={certification.title}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                {certification.title}
+              </h3>
+              <p className="text-gray-300 text-sm mb-1">
+                <strong>Issuer:</strong> {certification.issuer}
+              </p>
+              <p className="text-gray-300 text-sm">
+                <strong>Date:</strong> {certification.date}
+              </p>
+            </a>
+          ))}
         </div>
       </div>
     </section>
