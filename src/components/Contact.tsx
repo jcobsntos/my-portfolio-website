@@ -71,12 +71,6 @@ const Contact = () => {
       href: 'https://www.linkedin.com/in/jcobsntos/',
       gradient: 'from-blue-600 to-blue-800'
     },
-    {
-      name: 'Email',
-      icon: Mail,
-      href: 'mailto:jcobsntos@gmail.com',
-      gradient: 'from-cyan-600 to-teal-600'
-    }
   ];
 
   return (
