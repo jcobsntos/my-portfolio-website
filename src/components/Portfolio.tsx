@@ -57,6 +57,16 @@ const Portfolio = () => {
       tags: ["Electron", "React", "Node.js", "JavaScript", "CSS3", "GitHub Actions", "Desktop App", "Audio Processing"],
       category: 'Frontend'
     },
+    {
+      id: 5,
+      title: "AI Resume Analyzer",
+      description: "An AI-powered Applicant Tracking System (ATS) that helps both job seekers and recruiters with intelligent resume analysis, job matching, and candidate evaluation. Features real-time AI feedback, ATS compatibility scoring, and advanced analytics dashboard.",
+      image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      github: "https://github.com/jcobsntos/ai-resume-analyzer",
+      demo: "https://resume-ai-analyzer-web-app.vercel.app",
+      tags: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "OpenAI API", "Tailwind CSS", "JWT", "Framer Motion", "Prisma"],
+      category: 'Full Stack'
+    },
     
   ];
 
